@@ -1,0 +1,21 @@
+---
+description: Workflow rule - review-before-commit process for all changes
+alwaysApply: true
+---
+
+# Workflow: Review Before Commit
+
+Every change — code, docs, decisions, configs — follows this cycle:
+
+1. **Make the change** (create, modify, document, decide)
+2. **Pause and ask for review** — present what changed and why
+3. **Wait for approval** — user reviews, tests, or analyzes
+4. **Commit only after approval** — use a clear, conventional commit message
+
+## Rules
+
+- Never commit without explicit user approval
+- Never batch unrelated changes into one commit — keep commits atomic and focused
+- Always show a summary of what changed before asking for approval
+- If the user requests changes during review, apply them and re-present for approval
+- Update `docs/README.md` "Current Step" marker when moving between steps
