@@ -1,0 +1,34 @@
+---
+description: Core project context, goals, and constraints for AllVet app
+alwaysApply: true
+---
+
+# AllVet App - Project Context
+
+## What
+Expense and income tracking app for veterinarians. Start simple, design for growth.
+
+## Who
+Solo developer with 5+ years in computer graphics/3D web, using this to level up in fullstack React, clean architecture, and product planning.
+
+## Key Constraints
+- Google Sheets as initial database (swappable via repository pattern)
+- PWA for mobile-friendly use
+- TypeScript + React
+- Clean Architecture: domain layer has zero external dependencies
+- SOLID principles throughout
+- Every architectural decision should be documented in `docs/decisions/`
+
+## Learning Goals
+- Clean architecture in practice
+- React patterns (hooks, context, state management)
+- Full product lifecycle (spec → design → build → ship)
+- Data layer abstraction (swap Google Sheets for a real DB later)
+
+## Documentation
+All specs, decisions, and learnings live in `docs/`. Always check `docs/` for context before starting work.
+
+## Style
+- Simple, concise communication
+- Challenge requirements when something seems off
+- Explain architectural "why" not just "what"
