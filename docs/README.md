@@ -25,12 +25,13 @@ We work through each step sequentially. Each one is a conversation — we discus
 ## Progress
 
 - [ ] Step 1: PRD → `01-prd.md`
-  - [ ] 1.1 Problem & Vision
-  - [ ] 1.2 Target Users
+  - [x] 1.1 Problem & Vision
+  - [x] 1.2 Target Users
   - [ ] 1.3 Goals & Success Metrics
-  - [ ] 1.4 Scope (in v1 / out of v1)
-  - [ ] 1.5 User Stories
-  - [ ] 1.6 Constraints & Assumptions
+  - [ ] 1.4 Competitive Analysis (existing tools, APIs, inspiration). Partially done, progress has been made but could use some more work.
+  - [ ] 1.5 Scope (in v1 / out of v1)
+  - [ ] 1.6 User Stories
+  - [ ] 1.7 Constraints & Assumptions
 - [ ] Step 2: Design System → `02-design-system.md`
 - [ ] Step 3: UI Wireframes → `03-ui-wireframes.md`
 - [ ] Step 4: Architecture → `04-architecture.md`
@@ -39,4 +40,4 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 7: Implementation Plan → `07-implementation.md`
 - [ ] Step 8: Build MVP
 
-**Current → Step 1.1: Problem & Vision**
+**Current → Step 1.3: Goals & Success Metrics**
