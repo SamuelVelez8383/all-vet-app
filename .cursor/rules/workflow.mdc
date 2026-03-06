@@ -11,6 +11,7 @@ Every change — code, docs, decisions, configs — follows this cycle:
 2. **Pause and ask for review** — present what changed and why
 3. **Wait for approval** — user reviews, tests, or analyzes
 4. **Commit only after approval** — use a clear, conventional commit message
+5. **Mark step completed** - mark the step we were working as completed in the README.md file
 
 ## Rules
 
