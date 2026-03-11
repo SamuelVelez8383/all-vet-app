@@ -27,7 +27,7 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 1: PRD → `01-prd.md`
   - [x] 1.1 Problem & Vision
   - [x] 1.2 Target Users
-  - [ ] 1.3 Goals & Success Metrics
+  - [x] 1.3 Goals & Success Metrics
   - [ ] 1.4 Competitive Analysis (existing tools, APIs, inspiration). Partially done, progress has been made but could use some more work.
   - [ ] 1.5 Scope (in v1 / out of v1)
   - [ ] 1.6 User Stories
@@ -40,4 +40,4 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 7: Implementation Plan → `07-implementation.md`
 - [ ] Step 8: Build MVP
 
-**Current → Step 1.3: Goals & Success Metrics**
+**Current → Step 1.4: Competitive Analysis**
