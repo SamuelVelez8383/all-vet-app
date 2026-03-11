@@ -72,7 +72,23 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 
 ## 1.3 Goals & Success Metrics
 
-> *To be defined in step 1.3*
+### Goals
+
+- Minimize the time it takes for the user to write down expenses and income on a daily basis
+- Reduce the amount of errors and missed invoices/expenses/income by encouraging the user to constantly register them, while also having an accurate and easily reviewable bookkeeping
+- Enable an organized and easily accessible storage of invoice/expense files that reduces the possibility of losing documents
+- Make it possible to produce and compute obligations in a very easy and fast way at the end of each month without the need for manual computations
+- Allow the user to keep track of upcoming expenses, obligations, payments and to be notified of them.
+
+### Success Metrics
+
+- The user can see where money is going, what the main sources of income are, and drill into details on any time frame (daily, weekly, monthly, yearly). At a glance, the user knows which obligations need to be paid, which clients haven't paid yet, and how the month is trending
+- Reviewing expenses and income at the end of the month is visually appealing, easy to understand, and is there in a matter of few clicks. It also takes 30 mins instead of hours going through documents and a spreadsheet
+- Finding a receipt, invoice, or any document takes seconds and few clicks instead of searching into nested folders
+- Storing information (data and documents) feels like writing something down on a notebook, it is easy and natural. No friction
+- The user is able to register invoices/expenses/income on the fly from a cellphone or computer while on the road or a farm
+- The user logs information on a daily basis and reviews finances at the end of the month
+- The app generates correct and fast invoices which the user only needs to enter each expense/invoice item in an easy way vs current way of modifying manually a canva template with a table
 
 ---
 
