@@ -28,10 +28,13 @@ We work through each step sequentially. Each one is a conversation — we discus
   - [x] 1.1 Problem & Vision
   - [x] 1.2 Target Users
   - [x] 1.3 Goals & Success Metrics
-  - [ ] 1.4 Competitive Analysis (existing tools, APIs, inspiration). Partially done, progress has been made but could use some more work.
+  - [x] 1.4 Competitive Analysis (existing tools, APIs, inspiration)
   - [ ] 1.5 Scope (in v1 / out of v1)
   - [ ] 1.6 User Stories
   - [ ] 1.7 Constraints & Assumptions
+  - [ ] 1.8 Agent Role Rules → `.cursor/rules/`
+    - 1 orchestrator rule (phase-aware, activates the right role per step)
+    - 4 role rules: `pm.mdc`, `architect.mdc`, `designer.mdc`, `engineer.mdc`
 - [ ] Step 2: Design System → `02-design-system.md`
 - [ ] Step 3: UI Wireframes → `03-ui-wireframes.md`
 - [ ] Step 4: Architecture → `04-architecture.md`
@@ -40,4 +43,4 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 7: Implementation Plan → `07-implementation.md`
 - [ ] Step 8: Build MVP
 
-**Current → Step 1.4: Competitive Analysis**
+**Current → Step 1.5: Scope**

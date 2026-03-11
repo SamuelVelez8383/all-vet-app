@@ -1,8 +1,7 @@
 ---
 description: Workflow rule - review-before-commit process for all changes
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Workflow: Review Before Commit
 
 Every change — code, docs, decisions, configs — follows this cycle:

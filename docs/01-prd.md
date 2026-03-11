@@ -94,8 +94,6 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 
 ## 1.4 Competitive Analysis
 
-> *To be defined in step 1.4*
-
 ### Reference: Existing Tools & APIs
 
 | Tool | What It Does | API Available? | Notes |
