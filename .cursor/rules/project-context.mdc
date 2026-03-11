@@ -1,8 +1,7 @@
 ---
 description: Core project context, goals, and constraints for AllVet app
-alwaysApply: true
+alwaysApply: false
 ---
-
 # AllVet App - Project Context
 
 ## What
