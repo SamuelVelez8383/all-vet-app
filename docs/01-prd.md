@@ -120,7 +120,46 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 
 ## 1.5 Scope
 
-> *To be defined in step 1.5*
+### v1 — Core
+
+| # | Feature | Detail |
+|---|---------|--------|
+| 1 | Quick income/expense entry | Splitwise-style: big button, minimal fields, done. From phone or desktop. |
+| 2 | Categories | Configurable categories for income and expenses (consultations, surgery, meds, rent, supplies, etc.) |
+| 3 | Payment type | Cash or bank transfer — simple field on each transaction |
+| 4 | Document attachments | Attach photo/PDF (receipt, payment confirmation, billing statement) to any transaction |
+| 5 | Editable log of income/expense entries | All previous income/expense entries may be editable. Edited entries are marked as so. |
+| 6 | Client list | Name, contact info, basic notes. Link transactions to clients. |
+| 7 | Unpaid client tracking | Mark transactions as paid/unpaid, filter to see who owes money |
+| 8 | Log of income/expenses | Detailed user-friendly log of income/expense entry that is filterable |
+| 8 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
+| 9 | Filters and search | By period (week/month/year), client, category, payment status |
+| 10 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
+| 11 | PILA calculation (basic) | IBC = gross income × 40%, then salud (12.5%), pensión (16%). Standard rates only. |
+| 12 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other types of due payments or obligations |
+| 13 | Google Sheets backend | Initial data store, swappable via repository pattern |
+| 14 | PWA | Installable, mobile-friendly, works on phone during house calls |
+| 15 | Single user | Sofía only, no auth system needed |
+
+### v1 — Stretch
+
+| # | Feature | Detail |
+|---|---------|--------|
+| S1 | Graphs and visualizations | Income vs expenses over time, category breakdown charts, trend lines |
+| S2 | Patient list (basic) | Animal name, species, owner — linked to client. No clinical records yet. |
+
+### Parked (v2+)
+
+| # | Feature | Why not now |
+|---|---------|------------|
+| P1 | Invoice generation (cuenta de cobro) | Templates, PDF generation, prefilled items — high value but high complexity |
+| P2 | Patient clinical records | Medical history, treatments, photos — different domain |
+| P3 | Multi-user / shared access | Auth system, roles, permissions |
+| P4 | Alegra/Siigo API integration | Only needed at scale or for facturación electrónica |
+| P5 | Multi-currency | COP only for now |
+| P6 | PILA edge cases | ARL rates by activity, caja de compensación, income < 2 SMLMV handling |
+| P7 | Advanced dashboards | Year-over-year comparisons, forecasting, export to PDF/Excel |
+| P8 | Combined household finances | Sofía + partner finances merged view |
 
 ---
 
