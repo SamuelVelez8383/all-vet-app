@@ -120,31 +120,40 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 
 ## 1.5 Scope
 
-### v1 — Core
+### MVP (v0.1) — "Replace the spreadsheet"
+
+Ship fast, get feedback. The minimum for Sofía to stop using Google Sheets.
 
 | # | Feature | Detail |
 |---|---------|--------|
 | 1 | Quick income/expense entry | Splitwise-style: big button, minimal fields, done. From phone or desktop. |
 | 2 | Categories | Configurable categories for income and expenses (consultations, surgery, meds, rent, supplies, etc.) |
 | 3 | Payment type | Cash or bank transfer — simple field on each transaction |
-| 4 | Document attachments | Attach photo/PDF (receipt, payment confirmation, billing statement) to any transaction |
-| 5 | Editable log of income/expense entries | All previous income/expense entries may be editable. Edited entries are marked as so. |
-| 6 | Client list | Name, contact info, basic notes. Link transactions to clients. |
-| 7 | Unpaid client tracking | Mark transactions as paid/unpaid, filter to see who owes money |
-| 8 | Log of income/expenses | Detailed user-friendly log of income/expense entries that is filterable |
-| 9 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
-| 10 | Filters and search | By period (week/month/year), client, category, payment status |
-| 11 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
-| 12 | PILA calculation (full) | IBC = gross income × 40%, salud (12.5%), pensión (16%), ARL by activity. Handles income < 2 SMLMV and variable monthly income. |
-| 13 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other types of due payments or obligations |
-| 14 | Pending invoices & obligations dashboard | Dedicated view for unpaid client invoices (with aging: on-time, 7+, 30+ days) and upcoming obligation due dates |
-| 15 | Real-time profitability indicator | Running net income visible anytime during the month — no need to wait until month-end to know where she stands |
-| 16 | Recurring expenses | Auto-create monthly entries for fixed costs (rent, internet, phone, insurance). Editable each month. |
-| 17 | Service catalog (basic) | List of services with standard pricing. Feeds into quick entry presets and future invoice generation. |
-| 18 | Professional profile | Rates, contact info, professional e-card, uploaded PDFs. A section she can reference or share with clients. |
-| 19 | Google Sheets backend | Initial data store, swappable via repository pattern |
-| 20 | PWA | Installable, mobile-friendly, works on phone during house calls |
-| 21 | Single user | Sofía only, no auth system needed |
+| 4 | Client list | Name, contact info, basic notes. Link transactions to clients. |
+| 5 | Unpaid client tracking | Mark transactions as paid/unpaid, filter to see who owes money |
+| 6 | Log of income/expenses | Detailed user-friendly log of income/expense entries that is filterable |
+| 7 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
+| 8 | Filters and search | By period (week/month/year), client, category, payment status |
+| 9 | Google Sheets backend | Initial data store, swappable via repository pattern |
+| 10 | PWA | Installable, mobile-friendly, works on phone during house calls |
+| 11 | Single user | Sofía only, no auth system needed |
+
+### v1.0 — "The full promise"
+
+Built on top of MVP based on real feedback. Added in priority order.
+
+| Priority | Feature | Detail |
+|----------|---------|--------|
+| 1 | Editable entries | Edit previous income/expense entries. Edited entries are marked as so. |
+| 2 | Document attachments | Attach photo/PDF (receipt, payment confirmation, billing statement) to any transaction |
+| 3 | Real-time profitability indicator | Running net income visible anytime during the month — no need to wait until month-end |
+| 4 | Pending invoices & obligations dashboard | Dedicated view for unpaid client invoices (with aging: on-time, 7+, 30+ days) and upcoming obligation due dates |
+| 5 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
+| 6 | PILA calculation (full) | IBC = gross income × 40%, salud (12.5%), pensión (16%), ARL by activity. Handles income < 2 SMLMV and variable monthly income. |
+| 7 | Recurring expenses | Auto-create monthly entries for fixed costs (rent, internet, phone, insurance). Editable each month. |
+| 8 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other obligations |
+| 9 | Service catalog (basic) | List of services with standard pricing. Feeds into quick entry presets and future invoice generation. |
+| 10 | Professional profile | Rates, contact info, professional e-card, uploaded PDFs. A section she can reference or share with clients. |
 
 ### v1 — Stretch
 

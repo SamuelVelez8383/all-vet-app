@@ -29,7 +29,7 @@ We work through each step sequentially. Each one is a conversation — we discus
   - [x] 1.2 Target Users
   - [x] 1.3 Goals & Success Metrics
   - [x] 1.4 Competitive Analysis (existing tools, APIs, inspiration)
-  - [ ] 1.5 Scope (in v1 / out of v1)
+  - [x] 1.5 Scope (MVP → v1.0 → stretch → parked)
   - [ ] 1.6 User Stories
   - [ ] 1.7 Constraints & Assumptions
   - [ ] 1.8 Agent Role Rules → `.cursor/rules/`
@@ -43,4 +43,4 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 7: Implementation Plan → `07-implementation.md`
 - [ ] Step 8: Build MVP
 
-**Current → Step 1.5: Scope**
+**Current → Step 1.6: User Stories**
