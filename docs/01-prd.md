@@ -131,15 +131,20 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 | 5 | Editable log of income/expense entries | All previous income/expense entries may be editable. Edited entries are marked as so. |
 | 6 | Client list | Name, contact info, basic notes. Link transactions to clients. |
 | 7 | Unpaid client tracking | Mark transactions as paid/unpaid, filter to see who owes money |
-| 8 | Log of income/expenses | Detailed user-friendly log of income/expense entry that is filterable |
-| 8 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
-| 9 | Filters and search | By period (week/month/year), client, category, payment status |
-| 10 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
-| 11 | PILA calculation (basic) | IBC = gross income × 40%, then salud (12.5%), pensión (16%). Standard rates only. |
-| 12 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other types of due payments or obligations |
-| 13 | Google Sheets backend | Initial data store, swappable via repository pattern |
-| 14 | PWA | Installable, mobile-friendly, works on phone during house calls |
-| 15 | Single user | Sofía only, no auth system needed |
+| 8 | Log of income/expenses | Detailed user-friendly log of income/expense entries that is filterable |
+| 9 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
+| 10 | Filters and search | By period (week/month/year), client, category, payment status |
+| 11 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
+| 12 | PILA calculation (full) | IBC = gross income × 40%, salud (12.5%), pensión (16%), ARL by activity. Handles income < 2 SMLMV and variable monthly income. |
+| 13 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other types of due payments or obligations |
+| 14 | Pending invoices & obligations dashboard | Dedicated view for unpaid client invoices (with aging: on-time, 7+, 30+ days) and upcoming obligation due dates |
+| 15 | Real-time profitability indicator | Running net income visible anytime during the month — no need to wait until month-end to know where she stands |
+| 16 | Recurring expenses | Auto-create monthly entries for fixed costs (rent, internet, phone, insurance). Editable each month. |
+| 17 | Service catalog (basic) | List of services with standard pricing. Feeds into quick entry presets and future invoice generation. |
+| 18 | Professional profile | Rates, contact info, professional e-card, uploaded PDFs. A section she can reference or share with clients. |
+| 19 | Google Sheets backend | Initial data store, swappable via repository pattern |
+| 20 | PWA | Installable, mobile-friendly, works on phone during house calls |
+| 21 | Single user | Sofía only, no auth system needed |
 
 ### v1 — Stretch
 
@@ -147,6 +152,11 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 |---|---------|--------|
 | S1 | Graphs and visualizations | Income vs expenses over time, category breakdown charts, trend lines |
 | S2 | Patient list (basic) | Animal name, species, owner — linked to client. No clinical records yet. |
+| S3 | Offline support | PWA works without internet, syncs when back online. Critical for farm/finca visits with no signal. |
+| S4 | AI chat/voice entry | Send a voice message or text describing the expense/income, app parses it and creates the entry. |
+| S5 | Travel log | Rate per distance/city/day. Clients tagged by location so travel surcharge can be auto-computed. |
+| S6 | Appointment notes | Quick note per visit (not full clinical record). E.g. "Vacuna triple felina, next dose in 3 weeks." |
+| S7 | Budget targets | Monthly expense ceiling per category. Warning when approaching limit. |
 
 ### Parked (v2+)
 
@@ -157,9 +167,29 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 | P3 | Multi-user / shared access | Auth system, roles, permissions |
 | P4 | Alegra/Siigo API integration | Only needed at scale or for facturación electrónica |
 | P5 | Multi-currency | COP only for now |
-| P6 | PILA edge cases | ARL rates by activity, caja de compensación, income < 2 SMLMV handling |
-| P7 | Advanced dashboards | Year-over-year comparisons, forecasting, export to PDF/Excel |
-| P8 | Combined household finances | Sofía + partner finances merged view |
+| P6 | Income forecasting | Projections based on past months — valuable but variable income makes it tricky |
+| P7 | Tax estimation | Annual renta estimate based on accumulated income |
+| P8 | Export to CSV/Excel | Data dump for accountant or manual analysis |
+| P9 | Analytics suite | Client notes, referral tracking, scheduled summary emails, smart alerts ("you spent 40% more on supplies this month") |
+| P10 | Advanced dashboards | Year-over-year comparisons, client payment history summary, profitability per service type, seasonal patterns |
+| P11 | Medication inventory | Track stock, low-stock alerts |
+| P12 | Combined household finances | Sofía + partner finances merged view |
+| P13 | WhatsApp integration | Payment reminders ("Tienes un saldo pendiente de $X"), share service catalog, professional profile, documents with clients via WhatsApp API |
+| P14 | Document OCR & auto-tagging | Search receipt text, auto-categorize uploads |
+| P15 | Monthly document bundle | One-click download of all docs for a month |
+| P16 | Year-end tax summary | Everything needed for declaración de renta in one report |
+
+### Questions for Sofía
+
+> To be asked and answers recorded here before finalizing scope and user stories.
+
+1. **Split transactions** — When a single visit involves multiple items (consultation + meds + travel), does she prefer logging one entry with line items, or separate entries? How does she handle it today?
+2. **Client vs patient tracking** — Does she want to track at the pet level, the owner level, or both? What data matters for each?
+3. **Third-party vets** — When a surgery requires an anesthesiologist or specialist, does Sofía pay them or does the client pay directly? Does she need to track those payments?
+4. **Cuenta de cobro details** — What fields does she currently put on the Canva billing statement? (So we know what the eventual template needs)
+5. **Payment methods** — Beyond cash and bank transfer, does she use Nequi, Daviplata, or other digital wallets? Should those be payment type options?
+6. **Frequency of entries** — How many income/expense entries does she typically have per day? Per week? (Helps us prioritize speed of entry)
+7. **Travel pricing** — How does she currently calculate travel surcharges? Flat rate per zone? Per km? Per city?
 
 ---
 
