@@ -204,7 +204,75 @@ Built on top of MVP based on real feedback. Added in priority order.
 
 ## 1.6 User Stories
 
-> *To be defined in step 1.6*
+Question to AI: Should I merge AV-01 and AV-02? Or have them separate?
+
+### AV-01: Register an expense
+As a vet, I want to quickly register an expense from my phone, 
+so that I can log costs right after they happen without forgetting.
+
+Acceptance criteria:
+- [ ] I can find my app easily on my phone
+- [ ] The app loads quickly
+- [ ] I can tap a single button to start a new entry
+- [ ] I select income or expense
+- [ ] I enter amount, category, and optional description
+- [ ] I can select payment type (cash / bank transfer)
+- [ ] I can optionally link it to a client/business/recipient
+- [ ] Entry is saved and visible in the log immediately
+- [ ] I can optionally attach one or many documents to it
+- [ ] I can modify an expense at anytime and it will reflect in the log and summaries/computations immediately
+
+### AV-02: Register an 
+As a vet, I want to quickly register income from my phone, so that I can log revenue after a house call occurs and don't forget about it.
+
+Acceptance criteria:
+- [ ] I can tap a single button to start a new entry
+- [ ] I can mark the entry as an advancement (partial) or full payment
+- [ ] I can mark the entry as paid or to be paid (pending)
+- [ ] I enter amount, category, and optional description
+- [ ] I can select payment type (cash / bank transfer)
+- [ ] I can optionally link it to a client/business/recipient
+- [ ] Entry is saved and visible in the log immediately
+- [ ] I can optionally attach one or many documents to it
+- [ ] I can modify an expense at anytime and it will reflect in the log and summaries/computations immediately
+
+**To ask Sofia**: Can the payment be entered as full but pending and have a way to add a partial payment as an advanced? Let's say the consultation was 300.000 cop total but they gave an advance of 150.000 and then are pending to pay the rest? How would this look?
+
+### AV-03: Create new client
+As a vet, I want to easily create a new client, so I can link any expense or income to he/she.
+
+Acceptance criteria:
+- [ ] I can tap a single button to create a client
+- [ ] The client must be easily accessible and selectable when creating an income/expense
+- [ ] Clients should be unique. I shouldn't be able to create the same client twice
+- [ ] Clients should have all necessary information (email, cellphone, location/address, name, patients/animals) which I can specify and/or retrieve easily, as well as update at any time
+- [ ] Clients can have additional and optional information (preferences, preferred payment method, bank information, additional contact information, related people) which I can add and change at any time
+- [ ] I can relate the client to already registered expenses/incomes after creating the client
+- [ ] I can create a client while registering an expense/income
+
+### AV-04: Mark entry as paid
+As a vet, I want to quickly find an entry (income), and mark it as paid or partially paid, so that I can keep my payment history updated as soon as money comes in.
+
+Acceptance criteria:
+- [ ] I can easily search entries by client, date, patient, or any related info that can be used to filter and search
+- [ ] I can quickly mark an entry as fully paid by a single button
+- [ ] I can modify the entry to update the amount that has been paid in case the payment is partial and doesn't complete the full income entry
+- [ ] I can update an entry and add various types of payments since clients can pay partially in cash and bank transfer
+- [ ]
+
+### AV-05: I can query all expenses by different topics (client, paid/unpaid, expense/income, dates, etc)
+
+### AV-06: I bought supplies, I can register expense
+
+### AV-07: I need to find a receipt
+
+### AV-08: I want to compute balance at any time
+
+### AV-09: I want to review the balance of the current month
+
+### AV-10: I want to review the balance of last month, months, year
+
+### AV-11: I want to know what are my obligations for the month that has passed
 
 ---
 
