@@ -222,7 +222,7 @@ Acceptance criteria:
 - [ ] I can optionally attach one or many documents to it
 - [ ] I can modify an expense at anytime and it will reflect in the log and summaries/computations immediately
 
-### AV-02: Register an 
+### AV-02: Register an income
 As a vet, I want to quickly register income from my phone, so that I can log revenue after a house call occurs and don't forget about it.
 
 Acceptance criteria:
@@ -258,10 +258,18 @@ Acceptance criteria:
 - [ ] I can quickly mark an entry as fully paid by a single button
 - [ ] I can modify the entry to update the amount that has been paid in case the payment is partial and doesn't complete the full income entry
 - [ ] I can update an entry and add various types of payments since clients can pay partially in cash and bank transfer
-- [ ]
+- [ ] If the update comes in in the upcoming month of the one that the payment was registered, the payment could be split in two and considered for the new month
 
-### AV-05: I can query all expenses by different topics (client, paid/unpaid, expense/income, dates, etc)
+### AV-05: I can query and filter expenses
+As a vet, I want to accurately search/query and filter expenses by different criteria/categories (client, paid/unpaid, expense/income, dates, etc), so that I can find particular expenses and have filtered lists of them.
 
+Acceptance criteria:
+- [ ] I can find specific expenses/income by search criteria such as related keyword, client, date, expense/income type, etc
+- [ ] I can find a list of expenses/income by filtering through criteria such as category, client, patient, dates, expense/income type, paid, unpaid, partially paid, etc.
+- [ ] Searches and filters are accurate and don't leave out expenses/income that should be displayed. 
+- [ ] All possible search/filter criteria can be used alone and in combination between each other
+
+ 
 ### AV-06: I bought supplies, I can register expense
 
 ### AV-07: I need to find a receipt
@@ -272,7 +280,11 @@ Acceptance criteria:
 
 ### AV-10: I want to review the balance of last month, months, year
 
-### AV-11: I want to know what are my obligations for the month that has passed
+### AV-11: I want to know what are my obligations for the month that has passed (the ones I have to pay now)
+
+### AV-12: I want to get reminders of upcoming obligations
+
+### AV-13: I want to know which clients owe me
 
 ---
 
