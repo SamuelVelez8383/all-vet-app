@@ -79,6 +79,7 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 - Enable an organized and easily accessible storage of invoice/expense files that reduces the possibility of losing documents
 - Make it possible to produce and compute obligations in a very easy and fast way at the end of each month without the need for manual computations
 - Allow the user to keep track of upcoming expenses, obligations, payments and to be notified of them.
+- 
 
 ### Success Metrics
 
@@ -132,7 +133,7 @@ Ship fast, get feedback. The minimum for Sofía to stop using Google Sheets.
 | 4 | Client list | Name, contact info, basic notes. Link transactions to clients. |
 | 5 | Unpaid client tracking | Mark transactions as paid/unpaid, filter to see who owes money |
 | 6 | Log of income/expenses | Detailed user-friendly log of income/expense entries that is filterable |
-| 7 | Monthly summary dashboard | Income, expenses, net — at a glance for any month |
+| 7 | Monthly summary dashboard | Income, expenses, net — at a glance for any month. Shows "unallocated" line for disposable income not yet assigned to a purpose. |
 | 8 | Filters and search | By period (week/month/year), client, category, payment status |
 | 9 | Google Sheets backend | Initial data store, swappable via repository pattern |
 | 10 | PWA | Installable, mobile-friendly, works on phone during house calls |
@@ -148,7 +149,7 @@ Built on top of MVP based on real feedback. Added in priority order.
 | 2 | Document attachments | Attach photo/PDF (receipt, payment confirmation, billing statement) to any transaction |
 | 3 | Real-time profitability indicator | Running net income visible anytime during the month — no need to wait until month-end |
 | 4 | Pending invoices & obligations dashboard | Dedicated view for unpaid client invoices (with aging: on-time, 7+, 30+ days) and upcoming obligation due dates |
-| 5 | Net income breakdown | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable), household allocation |
+| 5 | Net income breakdown + month closing | Auto-calculate obligations: seguridad social, tithe, loan, car (if applicable). Includes a "close the month" action where she allocates disposable income to predefined buckets (savings, loan, household, personal, etc.). Allocations are saved as part of the monthly summary, not as transactions. |
 | 6 | PILA calculation (full) | IBC = gross income × 40%, salud (12.5%), pensión (16%), ARL by activity. Handles income < 2 SMLMV and variable monthly income. |
 | 7 | Recurring expenses | Auto-create monthly entries for fixed costs (rent, internet, phone, insurance). Editable each month. |
 | 8 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other obligations |
