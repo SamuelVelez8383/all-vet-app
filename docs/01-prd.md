@@ -207,9 +207,9 @@ Built on top of MVP based on real feedback. Added in priority order.
 
 Question to AI: Should I merge AV-01 and AV-02? Or have them separate?
 
-### AV-01: Register an expense
-As a vet, I want to quickly register an expense from my phone, 
-so that I can log costs right after they happen without forgetting.
+### AV-01: Register a transaction (income or expense)
+As a vet, I want to quickly register an expense/income from my phone, 
+so that I can log costs/income right after they happen without forgetting.
 
 Acceptance criteria:
 - [ ] I can find my app easily on my phone
@@ -217,21 +217,9 @@ Acceptance criteria:
 - [ ] I can tap a single button to start a new entry
 - [ ] I select income or expense
 - [ ] I enter amount, category, and optional description
-- [ ] I can select payment type (cash / bank transfer)
-- [ ] I can optionally link it to a client/business/recipient
-- [ ] Entry is saved and visible in the log immediately
-- [ ] I can optionally attach one or many documents to it
-- [ ] I can modify an expense at anytime and it will reflect in the log and summaries/computations immediately
-
-### AV-02: Register an income
-As a vet, I want to quickly register income from my phone, so that I can log revenue after a house call occurs and don't forget about it.
-
-Acceptance criteria:
-- [ ] I can tap a single button to start a new entry
+- [ ] I can select payment type (cash / bank transfer / card-only for expense)
 - [ ] I can mark the entry as an advancement (partial) or full payment
 - [ ] I can mark the entry as paid or to be paid (pending)
-- [ ] I enter amount, category, and optional description
-- [ ] I can select payment type (cash / bank transfer)
 - [ ] I can optionally link it to a client/business/recipient
 - [ ] Entry is saved and visible in the log immediately
 - [ ] I can optionally attach one or many documents to it
@@ -239,7 +227,7 @@ Acceptance criteria:
 
 **To ask Sofia**: Can the payment be entered as full but pending and have a way to add a partial payment as an advanced? Let's say the consultation was 300.000 cop total but they gave an advance of 150.000 and then are pending to pay the rest? How would this look?
 
-### AV-03: Create new client
+### AV-02: Create and manage clients
 As a vet, I want to easily create a new client, so I can link any expense or income to he/she.
 
 Acceptance criteria:
@@ -251,7 +239,7 @@ Acceptance criteria:
 - [ ] I can relate the client to already registered expenses/incomes after creating the client
 - [ ] I can create a client while registering an expense/income
 
-### AV-04: Mark entry as paid
+### AV-03: Mark entry as paid (full or partial)
 As a vet, I want to quickly find an entry (income), and mark it as paid or partially paid, so that I can keep my payment history updated as soon as money comes in.
 
 Acceptance criteria:
@@ -261,7 +249,7 @@ Acceptance criteria:
 - [ ] I can update an entry and add various types of payments since clients can pay partially in cash and bank transfer
 - [ ] If the update comes in in the upcoming month of the one that the payment was registered, the payment could be split in two and considered for the new month
 
-### AV-05: I can query and filter expenses
+### AV-04: Search, filter, and find entries/documents	
 As a vet, I want to accurately search/query and filter expenses by different criteria/categories (client, paid/unpaid, expense/income, dates, etc), so that I can find particular expenses and have filtered lists of them.
 
 Acceptance criteria:
@@ -269,23 +257,39 @@ Acceptance criteria:
 - [ ] I can find a list of expenses/income by filtering through criteria such as category, client, patient, dates, expense/income type, paid, unpaid, partially paid, etc.
 - [ ] Searches and filters are accurate and don't leave out expenses/income that should be displayed. 
 - [ ] All possible search/filter criteria can be used alone and in combination between each other
+- [ ] I can see and find attached documents/receipts of each queried/filtered expense
 
- 
-### AV-06: I bought supplies, I can register expense
+### AV-05: View financial summary (any time range)
+As a vet, I want to generate financial summaries/report for any given time range, so I can understand how my income/expenses have behaved and to plan ahead.
 
-### AV-07: I need to find a receipt
+Acceptance criteria:
+- [ ] I can generate a financial summary for a given time range (day, week, weeks, dates, month, months, year, etc)
+- [ ] I can visualize through numbers the gross income, net income, expense, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
+- [ ] I can see changes/fluctuations in finances from month to month or week to week if choosing multi-week and/or multi-month summary. I can compare how was, for example, January vs February vs March.
+- [ ] I can select different time ranges and select multiple or a single one
 
-### AV-08: I want to compute balance at any time
+### AV-06: View monthly obligations
 
-### AV-09: I want to review the balance of the current month
+### AV-07: Get reminders for due obligations
 
-### AV-10: I want to review the balance of last month, months, year
+### AV-08: Who owes me
 
-### AV-11: I want to know what are my obligations for the month that has passed (the ones I have to pay now)
+### AV-09: Close the month and allocate remaining income
 
-### AV-12: I want to get reminders of upcoming obligations
 
-### AV-13: I want to know which clients owe me
+Note: These is the model 
+
+```
+Gross Income
+  - Expenses
+  = Net before obligations
+  - PILA (auto-calculated)
+  - Tithe (auto-calculated or manual %)
+  = Disposable income
+  → Allocate: Savings ($X), Loan ($Y), Household ($Z), Personal ($W)
+  → Unallocated: $0 (ideally)
+```
+
 
 ---
 
