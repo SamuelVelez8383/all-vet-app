@@ -115,7 +115,7 @@ The app starts as a personal finance tool for one vet. It's built robust enough 
 - **Wave and FreshBooks** are good UX references for clean expense/income entry
 - **Splitwise** is the gold standard for frictionless expense entry UX
 
-> **Note for later (Architecture / Constraints):** The app's API layer should be built behind an abstraction so the backend can be swapped with minimal friction — our own backend for v1 (learning + full control), but designed so we could plug in Alegra, Siigo, or any other API later if it makes sense at scale. This applies to both the data layer (repository pattern) and any external service integrations. Revisit in steps 1.5, 1.7, and 4.
+> **Note for later (Architecture / Constraints):** The app's API layer should be built behind an abstraction so the backend can be swapped with minimal friction. Supabase (PostgreSQL) is the v1 backend, with Dexie.js for offline-first local storage. The repository pattern keeps the door open to plug in Alegra, Siigo, or any other API later. See [ADR-001](decisions/001-backend-stack.md). Revisit in steps 1.7 and 4.
 
 ---
 
@@ -135,9 +135,9 @@ Ship fast, get feedback. The minimum for Sofía to stop using Google Sheets.
 | 6 | Log of income/expenses | Detailed user-friendly log of income/expense entries that is filterable |
 | 7 | Monthly summary dashboard | Income, expenses, net — at a glance for any month. Shows "unallocated" line for disposable income not yet assigned to a purpose. |
 | 8 | Filters and search | By period (week/month/year), client, category, payment status |
-| 9 | Google Sheets backend | Initial data store, swappable via repository pattern |
+| 9 | Supabase backend | PostgreSQL via Supabase (DB, auth, file storage). Dexie.js for offline-first local storage with custom sync. All behind repository pattern for swappability. See [ADR-001](decisions/001-backend-stack.md). |
 | 10 | PWA | Installable, mobile-friendly, works on phone during house calls |
-| 11 | Single user | Sofía only, no auth system needed |
+| 11 | Single user with auth | Sofía only, but with Supabase Auth from day one so multi-user is a config change, not a rewrite |
 
 ### v1.0 — "The full promise"
 
@@ -155,6 +155,7 @@ Built on top of MVP based on real feedback. Added in priority order.
 | 8 | Reminders | Due dates for seguridad social (based on cédula or date), pending client payments, other obligations |
 | 9 | Service catalog (basic) | List of services with standard pricing. Feeds into quick entry presets and future invoice generation. |
 | 10 | Professional profile | Rates, contact info, professional e-card, uploaded PDFs. A section she can reference or share with clients. |
+| 11 | Export to CSV | Manual export of entries for any date range. Available as a standalone action and offered after closing a month. |
 
 ### v1 — Stretch
 
@@ -179,7 +180,7 @@ Built on top of MVP based on real feedback. Added in priority order.
 | P5 | Multi-currency | COP only for now |
 | P6 | Income forecasting | Projections based on past months — valuable but variable income makes it tricky |
 | P7 | Tax estimation | Annual renta estimate based on accumulated income |
-| P8 | Export to CSV/Excel | Data dump for accountant or manual analysis |
+| P8 | Google Drive backup | Automated and manual backup of entries (CSV) + documents to Google Drive. Configurable schedule (e.g., monthly after closing). Requires Google OAuth. |
 | P9 | Analytics suite | Client notes, referral tracking, scheduled summary emails, smart alerts ("you spent 40% more on supplies this month") |
 | P10 | Advanced dashboards | Year-over-year comparisons, client payment history summary, profitability per service type, seasonal patterns |
 | P11 | Medication inventory | Track stock, low-stock alerts |
@@ -319,6 +320,8 @@ Acceptance criteria:
 - [ ] I can review which months are pending closure.
 - [ ] I can understand the balance for the month being closed and specify how the disposable income is going to be used.
 - [ ] It should close the month and allocate. It is an action.
+- [ ] After closing, I am offered to export a backup (CSV of entries + attached documents) as a download.
+- [ ] (v2) I can configure automatic monthly backups to Google Drive after closing a month.
 
 Note: This is the model for computing the disposable income
 
@@ -353,6 +356,33 @@ Acceptance criteria:
 
 ## 1.7 Constraints & Assumptions
 
-> *To be defined in step 1.7*
+### Technical Constraints
 
-> **Carry-forward:** Backend abstraction layer — see note in 1.4 Key Takeaways.
+- **Stack:** React + TypeScript, Supabase (PostgreSQL, Auth, Storage), Dexie.js (offline), Vercel or Netlify (hosting). See [ADR-001](decisions/001-backend-stack.md).
+- **Repository pattern:** All data access goes through abstract interfaces. Domain logic never imports Supabase, Dexie, or any infrastructure directly.
+- **Offline-first:** The app must work without internet. Data is stored locally (Dexie.js/IndexedDB) and synced to Supabase when online. Sync logic must handle conflicts gracefully.
+- **PWA:** Must be installable on mobile, pass Lighthouse PWA audit, and support push notifications.
+- **Single user for MVP:** Auth is implemented from day one (Supabase Auth), but only one account is needed. Multi-user is a configuration change, not a rewrite.
+- **Currency:** COP only for MVP. Architecture should support multiple currencies in the future (amount + currency code, not just a number).
+- **Language:** Spanish UI. Architecture should support i18n for future English support.
+- **Zero cost:** All infrastructure must stay within free tiers for MVP. No paid services until the app has proven value.
+
+### Assumptions
+
+- Sofía has a smartphone with a modern browser (Chrome or Safari)
+- Internet connectivity is intermittent (farm/finca visits) — hence offline-first
+- Volume is low: ~5-20 transactions per week, ~5 documents per week
+- PILA rates and rules follow current Colombian law (2026). Rates may change yearly and should be configurable, not hardcoded.
+- Sofía is the only user for the foreseeable future, but architecture should not prevent adding more users
+
+### Security
+
+| Rule | Detail | Severity |
+|------|--------|----------|
+| **RLS on every table** | Enable Supabase Row Level Security on every table, no exceptions. New tables are public by default — always add policies before inserting data. | Critical |
+| **Service role key stays server-side** | The Supabase service role key must never appear in client-side code. Only the anon key is used in the frontend. Service role key is only used in Edge Functions or server-side code. | Critical |
+| **Signed URLs for files** | All file access through Supabase Storage or Cloudflare R2 must use signed URLs with expiration. No public buckets. | High |
+| **Local data is unencrypted** | IndexedDB (Dexie.js) stores data in plain text on the device. Acceptable risk for a single-user personal device. Revisit with Web Crypto API encryption if multi-user or sensitive client data is stored. | Medium (accepted for MVP) |
+| **Input validation** | All user input is validated both client-side (UX) and server-side (security). Never trust the client. | High |
+| **HTTPS only** | All communication over TLS. Enforced by Supabase and Vercel/Netlify by default. | High |
+| **Sync auth** | Every sync request from Dexie.js to Supabase must include a valid auth token. No anonymous writes to the database. | Critical |
