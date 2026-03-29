@@ -269,8 +269,28 @@ Acceptance criteria:
 - [ ] I can select different time ranges and select multiple or a single one
 
 ### AV-06: View monthly obligations
+As a vet, I want to review my monthly obligations, so I can accurately analyse, understand, and pay them.
+
+Acceptance criteria:
+- [ ] I can esily review my monthly obligations.
+- [ ] I can review previously paid monthly obligations.
+- [ ] I can mark obligations as paid.
+- [ ] I can review all overdue obligations with important information (payment, due date, etc).
+- [ ] I can configure different types of due dates (last day of month, biweekly, every 30 days, etc).
+- [ ] I can understand how my obligations are composed.
+- [ ] I can define set up and configure my obligations. The amount of obligations, which ones are they, how they are computed (percentage, fixed amount, mathematical formulae, standard obligations like seguridad social)
 
 ### AV-07: Get reminders for due obligations
+As a vet, I want to get promptly and timely notifications and reminders for my obligations, so that I can always stay on track with my obligations and never forget about them.
+
+Acceptance criteria: 
+- [ ] I can configure notifications to be sent before, during, and after the due date.
+- [ ] I can receive push notifications on my phone at the times I configured.
+- [ ] I can get notifications without having connection to internet.
+- [ ] I can see notifications inside my app even if I have dismissed (different than marked) them in my phone's/computer's notification center. 
+- [ ] I can mark notifications as seen inside the app and in the device's notification center. 
+- [ ] I can configure repettive notifications.
+- [ ] I can define notifications for any type of events/reminders. 
 
 ### AV-08: Who owes me
 
