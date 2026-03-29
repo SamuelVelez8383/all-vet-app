@@ -269,7 +269,7 @@ As a vet, I want to generate financial summaries/report for any given time range
 Acceptance criteria:
 - [ ] I can generate a financial summary for a given time range (day, week, weeks, dates, month, months, year, etc)
 - [ ] (Stretch) I can visualize through numbers the gross income, net income, expense, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
-- [ ] I can see changes/fluctuations in finances from month to month or week to week if choosing multi-week and/or multi-month summary. I can compare how was, for example, January vs February vs March.
+- [ ] (Stretch) I can see changes/fluctuations in finances from month to month or week to week if choosing multi-week and/or multi-month summary. I can compare how was, for example, January vs February vs March.
 - [ ] I can select different time ranges and select multiple or a single one
 - [ ] It is a read-only reporting
 
@@ -315,12 +315,12 @@ Acceptance criteria:
 - [ ] I can easily and quickly compute the final balance of the month and close it.
 - [ ] I can mark a month as closed.
 - [ ] I can record the distribution of months that have been closed.
-- [ ] I can review again the months that have ben closed.
+- [ ] I can review again the months that have been closed.
 - [ ] I can review which months are pending closure.
 - [ ] I can understand the balance for the month being closed and specify how the disposable income is going to be used.
 - [ ] It should close the month and allocate. It is an action.
 
-Note: These is the model for computing the disposable income
+Note: This is the model for computing the disposable income
 
 ```
 Gross Income
@@ -333,6 +333,21 @@ Gross Income
   → Unallocated: $0 (ideally)
 ```
 
+
+### AV-10: First-time setup and onboarding
+As a new user, I want to set up my profile and configure the app for my needs on first launch, so that the app is personalized and ready to use from day one.
+
+Acceptance criteria:
+- [ ] On first launch, I am guided through a short setup flow (not overwhelming — can be completed in under 5 minutes)
+- [ ] I can enter my basic info (name, profession, contact details)
+- [ ] I can set my currency (COP by default)
+- [ ] I can configure my obligations (seguridad social, tithe, loan, etc.) with their computation method (percentage, fixed amount, formula)
+- [ ] I can review and customize a set of default categories for income and expenses (pre-loaded with common vet categories)
+- [ ] I can skip any optional step and configure it later from settings
+- [ ] All setup data is editable later from a settings/profile section
+- [ ] The app ships with sensible defaults (standard PILA rates, common vet expense/income categories) so a user can start immediately even if they skip setup
+
+> **Design note:** For v0.1 (MVP), Sofía's data can be pre-loaded as defaults. But the setup flow should be generic enough that any independent professional could configure it for their needs. The architecture should treat Sofía's defaults as seed data, not hardcoded values.
 
 ---
 
