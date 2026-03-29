@@ -293,11 +293,26 @@ Acceptance criteria:
 - [ ] I can define notifications for any type of events/reminders. 
 
 ### AV-08: Who owes me
+As a vet, I want to be able to know at any time who and how much they owe me, so that I can stay on top of the situation, plan, and ask for the payments.
+
+Acceptance criteria:
+- [ ] I can review a list of all the people who owe me
+- [ ] I can get their available data and contact information (name, number, email)
+- [ ] I can review the exact amount they owe me and how it is distributed (what are the services and/or billing statements associated to the debt)
+- [ ] I can see how many days it has been since they owe me.
 
 ### AV-09: Close the month and allocate remaining income
+As a vet, I want to close the month by understanding my balance (gross income, expenses, net before obligations, PILA/seguridad social, tithe, disposable income), so that I can pay my obligations and allocate the disposable/remaining income.
 
+Acceptance criteria:
+- [ ] I can easily and quickly compute the final balance of the month and close it.
+- [ ] I can mark a month as closed.
+- [ ] I can record the distribution of month being closed.
+- [ ] I can review again the months that have being closed.
+- [ ] I can review which months are pending closure.
+- [ ] I can understand the balance for the month being closed and specify how the disposable income is going to be used.
 
-Note: These is the model 
+Note: These is the model for computing the disposable income
 
 ```
 Gross Income
