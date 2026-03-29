@@ -205,8 +205,6 @@ Built on top of MVP based on real feedback. Added in priority order.
 
 ## 1.6 User Stories
 
-Question to AI: Should I merge AV-01 and AV-02? Or have them separate?
-
 ### AV-01: Register a transaction (income or expense)
 As a vet, I want to quickly register an expense/income from my phone, 
 so that I can log costs/income right after they happen without forgetting.
@@ -218,17 +216,19 @@ Acceptance criteria:
 - [ ] I select income or expense
 - [ ] I enter amount, category, and optional description
 - [ ] I can select payment type (cash / bank transfer / card-only for expense)
-- [ ] I can mark the entry as an advancement (partial) or full payment
-- [ ] I can mark the entry as paid or to be paid (pending)
+- [ ] I can set an initial payment status (paid / pending)
 - [ ] I can optionally link it to a client/business/recipient
 - [ ] Entry is saved and visible in the log immediately
 - [ ] I can optionally attach one or many documents to it
-- [ ] I can modify an expense at anytime and it will reflect in the log and summaries/computations immediately
+- [ ] I can create new categories for expenses/income when creating an entry
+- [ ] If creating a new category matches an already existing category, suggest it instead. 
+- [ ] I can select categories from a predefined list
+
 
 **To ask Sofia**: Can the payment be entered as full but pending and have a way to add a partial payment as an advanced? Let's say the consultation was 300.000 cop total but they gave an advance of 150.000 and then are pending to pay the rest? How would this look?
 
 ### AV-02: Create and manage clients
-As a vet, I want to easily create a new client, so I can link any expense or income to he/she.
+As a vet, I want to easily create a new client, so I can link transactions to them.
 
 Acceptance criteria:
 - [ ] I can tap a single button to create a client
@@ -238,16 +238,20 @@ Acceptance criteria:
 - [ ] Clients can have additional and optional information (preferences, preferred payment method, bank information, additional contact information, related people) which I can add and change at any time
 - [ ] I can relate the client to already registered expenses/incomes after creating the client
 - [ ] I can create a client while registering an expense/income
+- [ ] I can delete clients
+- [ ] I can edit information of clients at any time
 
-### AV-03: Mark entry as paid (full or partial)
-As a vet, I want to quickly find an entry (income), and mark it as paid or partially paid, so that I can keep my payment history updated as soon as money comes in.
+### AV-03: Update entries
+As a vet, I want to quickly find an entry (income/expense), and mark it as paid or partially paid, as well as modify it, so that I can keep my payment history updated as soon as money comes in.
 
 Acceptance criteria:
 - [ ] I can easily search entries by client, date, patient, or any related info that can be used to filter and search
 - [ ] I can quickly mark an entry as fully paid by a single button
 - [ ] I can modify the entry to update the amount that has been paid in case the payment is partial and doesn't complete the full income entry
 - [ ] I can update an entry and add various types of payments since clients can pay partially in cash and bank transfer
-- [ ] If the update comes in in the upcoming month of the one that the payment was registered, the payment could be split in two and considered for the new month
+- [ ] If a payment is received in a different month than the original entry, the payment is attributed to the month it was received, and the original entry is updated accordingly.
+- [ ] I can modify any expense/income at anytime and it will reflect in the log and summaries/computations immediately (not for MVP but for v1.0).
+- [ ] I can void/cancel an entry, never fully delete.
 
 ### AV-04: Search, filter, and find entries/documents	
 As a vet, I want to accurately search/query and filter expenses by different criteria/categories (client, paid/unpaid, expense/income, dates, etc), so that I can find particular expenses and have filtered lists of them.
@@ -264,20 +268,21 @@ As a vet, I want to generate financial summaries/report for any given time range
 
 Acceptance criteria:
 - [ ] I can generate a financial summary for a given time range (day, week, weeks, dates, month, months, year, etc)
-- [ ] I can visualize through numbers the gross income, net income, expense, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
+- [ ] (Stretch) I can visualize through numbers the gross income, net income, expense, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
 - [ ] I can see changes/fluctuations in finances from month to month or week to week if choosing multi-week and/or multi-month summary. I can compare how was, for example, January vs February vs March.
 - [ ] I can select different time ranges and select multiple or a single one
+- [ ] It is a read-only reporting
 
 ### AV-06: View monthly obligations
 As a vet, I want to review my monthly obligations, so I can accurately analyse, understand, and pay them.
 
 Acceptance criteria:
-- [ ] I can esily review my monthly obligations.
+- [ ] I can easily review my monthly obligations.
 - [ ] I can review previously paid monthly obligations.
 - [ ] I can mark obligations as paid.
 - [ ] I can review all overdue obligations with important information (payment, due date, etc).
 - [ ] I can configure different types of due dates (last day of month, biweekly, every 30 days, etc).
-- [ ] I can understand how my obligations are composed.
+- [ ] I can understand how my obligations are distributed. Which items compose them
 - [ ] I can define set up and configure my obligations. The amount of obligations, which ones are they, how they are computed (percentage, fixed amount, mathematical formulae, standard obligations like seguridad social)
 
 ### AV-07: Get reminders for due obligations
@@ -286,14 +291,16 @@ As a vet, I want to get promptly and timely notifications and reminders for my o
 Acceptance criteria: 
 - [ ] I can configure notifications to be sent before, during, and after the due date.
 - [ ] I can receive push notifications on my phone at the times I configured.
-- [ ] I can get notifications without having connection to internet.
+- [ ] (Stretch) I can get notifications without having connection to internet.
 - [ ] I can see notifications inside my app even if I have dismissed (different than marked) them in my phone's/computer's notification center. 
 - [ ] I can mark notifications as seen inside the app and in the device's notification center. 
-- [ ] I can configure repettive notifications.
-- [ ] I can define notifications for any type of events/reminders. 
+- [ ] I can configure repetitive notifications.
+- [ ] I can define notifications for obligations and unpaid client reminders. 
 
 ### AV-08: Who owes me
 As a vet, I want to be able to know at any time who and how much they owe me, so that I can stay on top of the situation, plan, and ask for the payments.
+
+*Note:* This is a dedicated view, not just a filter preset.
 
 Acceptance criteria:
 - [ ] I can review a list of all the people who owe me
@@ -307,10 +314,11 @@ As a vet, I want to close the month by understanding my balance (gross income, e
 Acceptance criteria:
 - [ ] I can easily and quickly compute the final balance of the month and close it.
 - [ ] I can mark a month as closed.
-- [ ] I can record the distribution of month being closed.
-- [ ] I can review again the months that have being closed.
+- [ ] I can record the distribution of months that have been closed.
+- [ ] I can review again the months that have ben closed.
 - [ ] I can review which months are pending closure.
 - [ ] I can understand the balance for the month being closed and specify how the disposable income is going to be used.
+- [ ] It should close the month and allocate. It is an action.
 
 Note: These is the model for computing the disposable income
 
