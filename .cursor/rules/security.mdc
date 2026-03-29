@@ -1,0 +1,34 @@
+---
+description: Security rules for Supabase, Dexie.js, and infrastructure code
+globs: *.tsx, *.ts, *.js, *.jsx, *.sql
+alwaysApply: false
+---
+# Security Rules
+
+## Supabase — Non-negotiable
+
+- **Every new table must have RLS enabled** before any data is inserted. No exceptions.
+- **Always create RLS policies** alongside table creation. A table with RLS enabled but no policies blocks all access — verify policies work.
+- **Never use the service role key in client-side code.** Only the anon key (`SUPABASE_ANON_KEY`) is allowed in frontend code. The service role key is restricted to Edge Functions or server-side code.
+- **Never expose environment variables** (service keys, secrets) in client bundles. Use `VITE_` or `NEXT_PUBLIC_` prefixes only for public values (anon key, Supabase URL).
+
+## File Storage
+
+- **No public buckets.** All file access uses signed URLs with expiration.
+- **Validate file types and size** on upload — both client-side and server-side.
+
+## Sync & Auth
+
+- **Every sync request** from Dexie.js to Supabase must include a valid Supabase Auth token. No anonymous writes.
+- **Validate auth server-side** in Edge Functions — never trust the client token without verification.
+
+## Data & Input
+
+- **Validate all input** client-side (UX) and server-side (security). Never trust the client.
+- **Sanitize** any user-provided text before rendering to prevent XSS.
+- **Financial amounts** should use integer arithmetic (centavos, not pesos with decimals) to avoid floating-point errors.
+
+## Local Storage (Dexie.js / IndexedDB)
+
+- Local data is **unencrypted**. Acceptable for single-user MVP.
+- If multi-user or sensitive third-party data is stored, encrypt with Web Crypto API before writing to IndexedDB.
