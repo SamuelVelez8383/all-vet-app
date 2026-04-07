@@ -269,8 +269,9 @@ As a vet, I want to generate financial summaries/report for any given time range
 
 Acceptance criteria:
 - [ ] I can generate a financial summary for a given time range (day, week, weeks, dates, month, months, year, etc)
-- [ ] (Stretch) I can visualize through numbers the gross income, net income, expense, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
-- [ ] (Stretch) I can see changes/fluctuations in finances from month to month or week to week if choosing multi-week and/or multi-month summary. I can compare how was, for example, January vs February vs March.
+- [ ] I can see the gross income, net income, expenses, each obligation, tithe, and each disposable income that was allocated (if applicable) for each period selected.
+- [ ] (Stretch) I can see graphs and charts visualizing income vs expenses, category breakdowns, and trends over time.
+- [ ] (Stretch) I can compare periods side by side (e.g., January vs February vs March) to see changes and fluctuations.
 - [ ] I can select different time ranges and select multiple or a single one
 - [ ] It is a read-only reporting
 
