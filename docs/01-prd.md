@@ -391,7 +391,7 @@ Acceptance criteria:
 
 ### Technical Constraints
 
-- **Stack:** React + TypeScript, Supabase (PostgreSQL, Auth, Storage), Dexie.js (offline), Vercel or Netlify (hosting). See [ADR-001](decisions/001-backend-stack.md).
+- **Stack:** React + TypeScript, Supabase (PostgreSQL, Auth), Google Drive (file storage), Dexie.js (offline), Vercel or Netlify (hosting). See [ADR-001](decisions/001-backend-stack.md).
 - **Repository pattern:** All data access goes through abstract interfaces. Domain logic never imports Supabase, Dexie, or any infrastructure directly.
 - **Offline-first:** The app must work without internet. Data is stored locally (Dexie.js/IndexedDB) and synced to Supabase when online. Sync logic must handle conflicts gracefully.
 - **PWA:** Must be installable on mobile, pass Lighthouse PWA audit, and support push notifications.
@@ -399,14 +399,30 @@ Acceptance criteria:
 - **Currency:** COP only for MVP. Architecture should support multiple currencies in the future (amount + currency code, not just a number).
 - **Language:** Spanish UI. Architecture should support i18n for future English support.
 - **Zero cost:** All infrastructure must stay within free tiers for MVP. No paid services until the app has proven value.
+- **Data Privacy:** The data must be private and not exposed to anyone else but Sofia (or the specific user when expanded to others) and whichever developer has access to the database. It must obey Colombian laws on data privacy.
+- **Loading time:** App should load quick, in about 3-5 seconds and only fetch whatever is really needed at each time. Lazy loading strategy. 
+- **Architecture:** The app should be built in a way that it is modifiable, expandable, and scaled. It should be easily reskined and features, UI components, should be reusable elsewhere. Specific architecture patterns will be defined in the architecture docs but the app must follow clean code and clean architecture.
+- **Document uploads:** Only PDFs and images (JPEG, PNG) are accepted. Soft limit of 5 MB per file — uploads above 5 MB show a warning about storage impact but are still allowed. Hard cap at 20 MB to prevent accidental oversized uploads. Files are stored in Google Drive (15 GB free) — Supabase holds only a reference (`drive_file_id` + metadata, no binary blobs). Database backups (CSV exports) also go to Google Drive. Requires Google OAuth setup (Cloud Console credentials, consent screen, token refresh). Stretch: client-side image compression (e.g., `browser-image-compression`) so the user doesn't have to worry about file sizes.
+- **Testing strategy:** Integration tests for critical business logic (PILA calculations, month-closing computations, sync conflict resolution). E2E tests for core user flows (register transaction, search/filter, close month). Unit tests only for non-trivial utility functions. Tools: Vitest for unit/integration, Playwright for E2E. No coverage targets — focus on high-value paths that would be painful to break.
+- **Accessibility:** Not a priority for MVP (single known user). Revisit for v2 if app expands to other users.
+
+
+### General Constraints
+
+- **Target date for MVP:** The expected date for delivering the MVP is June of 2026.
+- **Solo developer, LLM-assisted:** One developer with limited time. LLMs and AI agents are used heavily for code generation, architecture, and iteration. This means: features must be small and shippable, the codebase must stay clean enough for LLMs to work with effectively (clear naming, small files, good separation), and documentation is a first-class concern — it is the primary context passed to agents.
+- **Documentation as source of truth:** Every architectural and technical decision must be documented with accurate, truthful information. Documentation must be written so that (a) any human developer can understand what is happening and why, and (b) AI/LLMs can use it as reliable context to code and architect correctly. No outdated docs, no aspirational statements presented as facts, no undocumented deviations from documented decisions. If the code diverges from the docs, the docs must be updated first. ADRs in `docs/decisions/`, PRD in `docs/`, cursor rules in `.cursor/rules/`.
 
 ### Assumptions
 
 - Sofía has a smartphone with a modern browser (Chrome or Safari)
 - Internet connectivity is intermittent (farm/finca visits) — hence offline-first
-- Volume is low: ~5-20 transactions per week, ~5 documents per week
+- Volume is low: ~10-30 transactions per week, ~5-10 documents per week
 - PILA rates and rules follow current Colombian law (2026). Rates may change yearly and should be configurable, not hardcoded.
 - Sofía is the only user for the foreseeable future, but architecture should not prevent adding more users
+- **Supabase free tier (as of 2026):** Unlimited API requests, 500 MB database, 1 GB file storage (unused — files go to Google Drive), 5 GB egress/month, 50,000 monthly active users. At ~30 tx/week, structured data is well within limits (~5 MB/year). Database size is not a concern for the foreseeable future.
+- **Google Drive free tier:** 15 GB shared across Gmail, Drive, and Photos. At ~5-10 docs/week averaging 1-3 MB each, estimated 20-120 MB/month for app files. Plenty of headroom unless the Google account is already near capacity.
+
 
 ### Security
 
@@ -414,8 +430,25 @@ Acceptance criteria:
 |------|--------|----------|
 | **RLS on every table** | Enable Supabase Row Level Security on every table, no exceptions. New tables are public by default — always add policies before inserting data. | Critical |
 | **Service role key stays server-side** | The Supabase service role key must never appear in client-side code. Only the anon key is used in the frontend. Service role key is only used in Edge Functions or server-side code. | Critical |
-| **Signed URLs for files** | All file access through Supabase Storage or Cloudflare R2 must use signed URLs with expiration. No public buckets. | High |
+| **Google Drive file access** | All files stored on Google Drive must be accessed via authenticated Google Drive API calls using the user's OAuth token. No publicly shared links. Files are private to the user's Drive account. | High |
 | **Local data is unencrypted** | IndexedDB (Dexie.js) stores data in plain text on the device. Acceptable risk for a single-user personal device. Revisit with Web Crypto API encryption if multi-user or sensitive client data is stored. | Medium (accepted for MVP) |
 | **Input validation** | All user input is validated both client-side (UX) and server-side (security). Never trust the client. | High |
 | **HTTPS only** | All communication over TLS. Enforced by Supabase and Vercel/Netlify by default. | High |
 | **Sync auth** | Every sync request from Dexie.js to Supabase must include a valid auth token. No anonymous writes to the database. | Critical |
+
+### Risks
+
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|------------|------------|
+| **Supabase free tier changes or limits hit** | Structured data becomes inaccessible or requires paid plan | Low — 500 MB DB is generous for ~30 tx/week; at current volume would last years | Files already on Google Drive so only structured data is at risk. Repository pattern ensures DB migration is feasible. Monitor DB size quarterly. |
+| **Google Drive dependency / OAuth complexity** | File uploads fail, OAuth tokens expire, Google API changes break uploads | Medium — OAuth token refresh is a real failure point | Google Drive API is stable and well-documented. Token refresh must be robust (handle expiry silently). Abstract file storage behind a repository interface so Drive can be swapped. Accept this complexity upfront in MVP to avoid migration later. |
+| **Offline sync conflicts** | Data loss or duplicate entries | Low — single user, typically single device | Last-write-wins for simple fields. For payments/amounts, flag conflicts for manual resolution. Sync logic must be idempotent. Show a "last synced" timestamp prominently so the user always knows the data state. |
+| **iOS PWA push notification limitations** | Reminders (AV-07) may not work reliably on iPhone | Medium — iOS Web Push support has restrictions | Research spike required before committing to notifications architecture. Fallback: in-app notification badge visible on next open. See Open Research below. |
+| **User adoption** | Sofía doesn't switch from spreadsheet, app goes unused | Low — direct collaboration and involvement | Sofía is part of the feedback loop. MVP is scoped to "replace the spreadsheet," not everything at once. Gradual transition: she can use both in parallel initially. |
+| **Solo dev bandwidth** | MVP misses June 2026 target, scope creep | Medium | LLM-assisted development. Strict scope discipline — MVP is 11 features, no more. Parked features stay parked. Weekly scope check against this PRD. |
+| **Database data loss** | All financial data lost | Low | Free tier has no automated Supabase backups. Mitigation: manual CSV export implemented early (MVP scope). Month-closing (AV-09) prompts export. Long-term: automated Google Drive backup (P8). |
+| **PILA/regulatory changes** | Calculations become incorrect | Medium — PILA rates change yearly | All rates and thresholds are configurable, not hardcoded. Stored as configuration data updatable without code changes. UI shows which year's rates are active. |
+
+### Open Research
+
+> **iOS PWA push notifications:** Investigate current Safari/iOS support for the Web Push API in PWAs — permissions model, reliability, whether PWA must be added to home screen, notification persistence. This determines the architecture for AV-07 (reminders) and must be resolved before implementing that feature.

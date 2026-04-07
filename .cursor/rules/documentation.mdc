@@ -8,7 +8,7 @@ alwaysApply: true
 
 Every architectural and technical decision must be documented with accurate, truthful information. No guesses, no aspirational statements presented as facts, no outdated references.
 
-Documentation must presede code, not the other way around. Documentation is written before code and updated as necessary if the planned solution was not accurate or correct. 
+Documentation must precede code, not the other way around. Documentation is written before code and updated as necessary if the planned solution was not accurate or correct.
 
 ## Who Documentation Is Written For
 
