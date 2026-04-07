@@ -1,0 +1,36 @@
+---
+description: Documentation standards — every decision must be documented truthfully for both humans and AI/LLMs
+alwaysApply: true
+---
+# Documentation Standards
+
+## The Rule
+
+Every architectural and technical decision must be documented with accurate, truthful information. No guesses, no aspirational statements presented as facts, no outdated references.
+
+Documentation must presede code, not the other way around. Documentation is written before code and updated as necessary if the planned solution was not accurate or correct. 
+
+## Who Documentation Is Written For
+
+Documentation has two audiences and must serve both:
+
+1. **Human developers** — anyone picking up this codebase must understand what is happening and why, without needing to ask
+2. **AI/LLM agents** — agents use docs as context to code and architect correctly; stale or wrong docs produce wrong code
+
+## Where Things Are Documented
+
+| What | Where |
+|------|-------|
+| Architectural and technical decisions | `docs/decisions/` as ADRs (Architecture Decision Records) |
+| Product requirements, scope, constraints | `docs/01-prd.md` and other `docs/` files |
+| AI/agent behavioral rules | `.cursor/rules/` |
+| Stack, patterns, and constraints summary | `.cursor/rules/project-context.mdc` |
+
+## Rules
+
+- **Document before or alongside implementation.** Never after the fact unless catching up on an undocumented decision.
+- **If the code diverges from the docs, update the docs first, then the code.** Docs are the source of truth.
+- **Cursor rules must reflect reality.** If a technology, pattern, or constraint changes, update the relevant `.cursor/rules/` or `.cursor/agents` file immediately. Stale rules mislead agents.
+- **ADRs are immutable history.** Once written, don't rewrite an ADR — write a new one that supersedes it and link them.
+- **No aspirational docs.** If something is planned but not yet implemented, mark it clearly as "planned" or "future." Never describe a future state as the current one.
+- **When modifying a feature, check docs first.** Verify that the relevant section of the PRD, ADRs, and cursor rules are still accurate after the change.
