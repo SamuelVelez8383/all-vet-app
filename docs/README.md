@@ -30,7 +30,7 @@ We work through each step sequentially. Each one is a conversation — we discus
   - [x] 1.3 Goals & Success Metrics
   - [x] 1.4 Competitive Analysis (existing tools, APIs, inspiration)
   - [x] 1.5 Scope (MVP → v1.0 → stretch → parked)
-  - [ ] 1.6 User Stories
+  - [x] 1.6 User Stories
   - [ ] 1.7 Constraints & Assumptions
   - [ ] 1.8 Agent Role Rules → `.cursor/rules/`
     - 1 orchestrator rule (phase-aware, activates the right role per step)
