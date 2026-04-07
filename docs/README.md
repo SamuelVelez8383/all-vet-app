@@ -31,7 +31,7 @@ We work through each step sequentially. Each one is a conversation — we discus
   - [x] 1.4 Competitive Analysis (existing tools, APIs, inspiration)
   - [x] 1.5 Scope (MVP → v1.0 → stretch → parked)
   - [x] 1.6 User Stories
-  - [ ] 1.7 Constraints & Assumptions
+  - [x] 1.7 Constraints & Assumptions
   - [ ] 1.8 Agent Role Rules → `.cursor/rules/`
     - 1 orchestrator rule (phase-aware, activates the right role per step)
     - 4 role rules: `pm.mdc`, `architect.mdc`, `designer.mdc`, `engineer.mdc`
@@ -43,4 +43,4 @@ We work through each step sequentially. Each one is a conversation — we discus
 - [ ] Step 7: Implementation Plan → `07-implementation.md`
 - [ ] Step 8: Build MVP
 
-**Current → Step 1.6: User Stories**
+**Current → Step 1.8: Agent Role Rules**
