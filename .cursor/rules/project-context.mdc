@@ -11,18 +11,19 @@ Expense and income tracking app for veterinarians. Start simple, design for grow
 Solo developer with 5+ years in computer graphics/3D web, using this to level up in fullstack React, clean architecture, and product planning.
 
 ## Key Constraints
-- Google Sheets as initial database (swappable via repository pattern)
+- Supabase (PostgreSQL, Auth) as backend. See `docs/decisions/001-backend-stack.md`
+- Google Drive for all file storage (documents, receipts, backups) — Supabase holds references only
 - PWA for mobile-friendly use
 - TypeScript + React
 - Clean Architecture: domain layer has zero external dependencies
 - SOLID principles throughout
-- Every architectural decision should be documented in `docs/decisions/`
+- Every architectural decision must be documented in `docs/decisions/` before or alongside implementation
 
 ## Learning Goals
 - Clean architecture in practice
 - React patterns (hooks, context, state management)
 - Full product lifecycle (spec → design → build → ship)
-- Data layer abstraction (swap Google Sheets for a real DB later)
+- Data layer abstraction (repository pattern for backend swappability)
 
 ## Documentation
 All specs, decisions, and learnings live in `docs/`. Always check `docs/` for context before starting work.
