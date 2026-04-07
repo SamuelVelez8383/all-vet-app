@@ -353,6 +353,38 @@ Acceptance criteria:
 
 > **Design note:** For v0.1 (MVP), Sofía's data can be pre-loaded as defaults. But the setup flow should be generic enough that any independent professional could configure it for their needs. The architecture should treat Sofía's defaults as seed data, not hardcoded values.
 
+### AV-11: Recurring expenses (v1.0)
+As a vet, I want to define recurring expenses that are automatically created each month, so that I don't have to re-enter fixed costs like rent, internet, or insurance every time.
+
+Acceptance criteria:
+- [ ] I can create a recurring expense with amount, category, description, and frequency (monthly, biweekly, etc.)
+- [ ] Recurring expenses are auto-generated at the start of each period or when specified to
+- [ ] I can edit or skip an auto-generated entry for a specific month without affecting future recurrences
+- [ ] I can pause or cancel a recurring expense at any time
+- [ ] I can see a list of all my active recurring expenses and their next occurrence
+- [ ] Auto-generated entries are visually distinguishable from manually created ones
+
+### AV-12: Service catalog (v1.0)
+As a vet, I want to maintain a list of services I offer with their standard pricing, so that I can quickly select them when registering income and have consistent pricing.
+
+Acceptance criteria:
+- [ ] I can create, edit, and delete services in my catalog
+- [ ] Each service has a name, description, default price, and category
+- [ ] When registering income, I can select from my service catalog to auto-fill the amount and category
+- [ ] I can override the auto-filled amount for a specific entry (discounts, adjustments)
+- [ ] The catalog is accessible from the quick entry flow — doesn't require navigating elsewhere first
+- [ ] I can reorder or group services for faster access to the ones I use most
+
+### AV-13: Professional profile (v1.0)
+As a vet, I want a section where I keep my professional information, rates, and documents, so that I have everything organized in one place and ready to share with clients.
+
+Acceptance criteria:
+- [ ] I can enter and update my professional info (name, specialty, contact details, professional ID)
+- [ ] I can upload and manage documents (certifications, licenses, business cards, PDFs)
+- [ ] I can maintain a rate sheet linked to my service catalog
+- [ ] I can view my profile as a client would see it (preview mode)
+- [ ] I can share my profile or specific documents (e.g., via link or export to PDF)
+
 ---
 
 ## 1.7 Constraints & Assumptions
